@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  ListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Return a list of Tasks
+      MemorySize: 128
+      Timeout: 2
+      Handler: net.nihilanth.demo.samkotlincrud.get.Handler::handler
+      Runtime: java8
+      CodeUri: ./lambda-get/build/libs/lambda-get-1.0-SNAPSHOT-all.jar
