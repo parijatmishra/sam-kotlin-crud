@@ -8,7 +8,7 @@ Resources:
     Properties:
       Description: Return a list of Tasks
       MemorySize: 128
-      Timeout: 2
+      Timeout: 30
       Handler: net.nihilanth.demo.samkotlincrud.get.Handler::handler
       Runtime: java8
       CodeUri: ./lambda-get/build/libs/lambda-get-1.0-SNAPSHOT-all.jar

@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  ListFunction:
+    Properties:
+      CodeUri: s3://code-us-east-1-82573941361/sam/samkotlincrud//41cc861ae149c1fa5288782b1b130325
+      Description: Return a list of Tasks
+      Handler: net.nihilanth.demo.samkotlincrud.get.Handler::handler
+      MemorySize: 128
+      Runtime: java8
+      Timeout: 30
+    Type: AWS::Serverless::Function
+Transform:
+- AWS::Serverless-2016-10-31

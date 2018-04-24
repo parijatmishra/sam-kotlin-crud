@@ -3,6 +3,7 @@ package net.nihilanth.demo.samkotlincrud.get
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -14,11 +15,20 @@ data class HandlerOutput(val message: String)
 
 class Handler {
     val mapper = jacksonObjectMapper()
-    fun handler(inputStream: InputStream, outputStream: OutputStream) {
-        val inputString  = inputStream.bufferedReader().use { it.readText() }
-        val input = mapper.readValue<HandlerInput>(inputString)
-        println("Input String is ${inputString}")
-        println("Input Object is $input")
 
+    init {
+        mapper.registerKotlinModule()
+    }
+
+    fun handler(inputStream: InputStream, outputStream: OutputStream) {
+        val inputObj = mapper.readValue<HandlerInput>(inputStream)
+        mapper.writeValue(outputStream, HandlerOutput("Hello, ${inputObj.who}"))
+
+//        val inputString  = inputStream.bufferedReader().use { it.readText() }
+//        println("Input String is [${inputString}]")
+//        val tree = mapper.readTree(inputString)
+//        val node = tree.get("who")
+//        val text = node.asText()
+//        println("node.who = $text")
     }
 }
